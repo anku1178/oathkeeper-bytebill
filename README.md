@@ -5,3 +5,5 @@ Track memberships, sales, and expenses seamlessly — all in one place.
 # Team Members
 1. Ankush Korde
 2. Rugved Shelke
+3. Amey Kurade
+4. Nupur Deshmukh
