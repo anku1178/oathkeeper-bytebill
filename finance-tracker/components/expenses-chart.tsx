@@ -4,29 +4,36 @@ import { Line, LineChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer } fro
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 
 // Generate mock data for the chart
-const weeklyData = [
-  { name: "Mon", expenses: 580 },
-  { name: "Tue", expenses: 450 },
-  { name: "Wed", expenses: 350 },
-  { name: "Thu", expenses: 620 },
-  { name: "Fri", expenses: 890 },
-  { name: "Sat", expenses: 750 },
-  { name: "Sun", expenses: 420 },
-]
 
-const monthlyData = [
-  { name: "Week 1", expenses: 3100 },
-  { name: "Week 2", expenses: 4200 },
-  { name: "Week 3", expenses: 3800 },
-  { name: "Week 4", expenses: 4100 },
-]
 
 interface ExpensesChartProps {
   timeframe: "weekly" | "monthly"
 }
 
+import { useEffect, useState } from "react"
+
 export function ExpensesChart({ timeframe }: ExpensesChartProps) {
-  const data = timeframe === "weekly" ? weeklyData : monthlyData
+  const [data, setData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch("/api/expenses/trends")
+      .then(res => res.json())
+      .then(json => {
+        // You can adjust this if your backend returns both weekly and monthly
+        setData(json.trends || []);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError("Failed to load chart data.");
+        setLoading(false);
+      });
+  }, [timeframe]);
+
+  if (loading) return <div className="h-full w-full flex items-center justify-center">Loading...</div>;
+  if (error) return <div className="h-full w-full flex items-center justify-center text-red-500">{error}</div>;
 
   return (
     <ChartContainer

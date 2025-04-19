@@ -23,7 +23,7 @@ import { useIsMobile } from "@/hooks/use-mobile"
 import { Badge } from "@/components/ui/badge"
 
 const navItems = [
-  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { name: "Dashboard", href: "/", icon: LayoutDashboard },
   { name: "Expenses", href: "/expenses", icon: CreditCard },
   { name: "Receipts & Bills", href: "/receipts", icon: Receipt },
   { name: "Analytics", href: "/analytics", icon: PieChart },
@@ -45,7 +45,7 @@ export function AppSidebar() {
   const sidebarContent = (
     <>
       <div className="flex h-16 items-center px-4">
-        <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
+        <Link href="/" className="flex items-center gap-2 font-semibold">
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"

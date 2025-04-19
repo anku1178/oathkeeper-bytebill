@@ -77,6 +77,7 @@ const recentBadges: BadgeType[] = (profileData.badges || []).map((badge: any) =>
 }));
   const activeChallenge = profileData.activeChallenge;
 
+  
   return (
     <div className="p-4 md:p-6">
       <div className="flex items-center justify-between mb-6">
@@ -242,10 +243,10 @@ const recentBadges: BadgeType[] = (profileData.badges || []).map((badge: any) =>
                 className="space-y-0"
                 value={activeTimeframe}
                 onValueChange={(value: string) => {
-      if (value === "monthly" || value === "weekly") {
-        setActiveTimeframe(value);
-      }
-    }}
+  if (value === "monthly" || value === "weekly") {
+    setActiveTimeframe(value);
+  }
+}}
               >
                 <TabsList>
                   <TabsTrigger value="weekly">Weekly</TabsTrigger>
@@ -398,16 +399,16 @@ const recentBadges: BadgeType[] = (profileData.badges || []).map((badge: any) =>
               </Button>
               <Button variant="outline" className="flex h-24 w-full flex-col items-center justify-center gap-1 p-2">
                 <CircleDollarSign className="h-6 w-6" />
-                <span className="text-xs">Income</span>
+                <span className="text-xs">Budget</span>
               </Button>
               <Button variant="outline" className="flex h-24 w-full flex-col items-center justify-center gap-1 p-2">
                 <Sparkles className="h-6 w-6" />
-                <span className="text-xs">Upgrade</span>
+                <span className="text-xs">Challenges</span>
               </Button>
             </div>
           </CardContent>
         </Card>
       </div>
     </div>
-  );
+  )
 }

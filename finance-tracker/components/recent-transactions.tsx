@@ -2,61 +2,30 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
-// Sample transaction data
-const transactions = [
-  {
-    id: 1,
-    merchant: "Urban Cafe",
-    category: "Dining",
-    amount: 450,
-    date: "Today, 2:30 PM",
-    logo: "/placeholder.svg?height=40&width=40",
-    initials: "UC",
-    type: "debit",
-  },
-  {
-    id: 2,
-    merchant: "Grocery Mart",
-    category: "Groceries",
-    amount: 1250,
-    date: "Yesterday, 6:15 PM",
-    logo: "/placeholder.svg?height=40&width=40",
-    initials: "GM",
-    type: "debit",
-  },
-  {
-    id: 3,
-    merchant: "Amazon",
-    category: "Shopping",
-    amount: 1899,
-    date: "Jul 15, 11:30 AM",
-    logo: "/placeholder.svg?height=40&width=40",
-    initials: "AZ",
-    type: "debit",
-  },
-  {
-    id: 4,
-    merchant: "Electric Co.",
-    category: "Utilities",
-    amount: 1200,
-    date: "Jul 13, 9:00 AM",
-    logo: "/placeholder.svg?height=40&width=40",
-    initials: "EC",
-    type: "debit",
-  },
-  {
-    id: 5,
-    merchant: "Monthly Salary",
-    category: "Income",
-    amount: 45000,
-    date: "Jul 1, 10:00 AM",
-    logo: "/placeholder.svg?height=40&width=40",
-    initials: "MS",
-    type: "credit",
-  },
-]
+import { useEffect, useState } from "react"
 
 export function RecentTransactions() {
+  const [transactions, setTransactions] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch("/api/transactions/recent")
+      .then(res => res.json())
+      .then(json => {
+        setTransactions(json.transactions || []);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError("Failed to load recent transactions.");
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <div className="flex items-center justify-center h-32">Loading...</div>;
+  if (error) return <div className="flex items-center justify-center h-32 text-red-500">{error}</div>;
+
   return (
     <div className="space-y-2">
       {transactions.map((transaction) => (
