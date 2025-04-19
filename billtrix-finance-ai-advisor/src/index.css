@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* BillTrix Light Theme */
+    --background: 0 0% 100%;
+    --foreground: 220 20% 17%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 17%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 17%;
+    
+    /* Purple primary from BillTrix palette */
+    --primary: 252 85% 74%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 240 10% 97%;
+    --secondary-foreground: 220 20% 17%;
+    
+    --muted: 240 10% 97%;
+    --muted-foreground: 220 15% 50%;
+    
+    --accent: 240 10% 97%;
+    --accent-foreground: 220 20% 17%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
+    --ring: 252 85% 74%;
+    
+    --radius: 0.75rem;
+    
+    /* Sidebar styles */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 252 85% 74%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 240 6% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 252 85% 74%;
+  }
+  
+  .dark {
+    /* BillTrix Dark Theme */
+    --background: 221 39% 11%;
+    --foreground: 210 20% 98%;
+    
+    --card: 221 39% 11%;
+    --card-foreground: 210 20% 98%;
+    
+    --popover: 221 39% 11%;
+    --popover-foreground: 210 20% 98%;
+    
+    /* Purple primary from BillTrix palette */
+    --primary: 252 85% 74%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 210 20% 98%;
+    
+    --muted: 215 28% 17%;
+    --muted-foreground: 217 20% 75%;
+    
+    --accent: 215 28% 17%;
+    --accent-foreground: 210 20% 98%;
+    
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 20% 98%;
+    
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 252 85% 74%;
+    
+    /* Dark mode sidebar */
+    --sidebar-background: 221 39% 11%;
+    --sidebar-foreground: 240 5% 96%;
+    --sidebar-primary: 252 85% 74%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 33% 18%;
+    --sidebar-accent-foreground: 240 5% 96%;
+    --sidebar-border: 217 33% 18%;
+    --sidebar-ring: 252 85% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Card styles */
+  .card-gradient {
+    @apply bg-gradient-to-br from-card to-secondary/80 backdrop-blur-sm;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  /* Glass morphism */
+  .glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-md;
+  }
+  
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-lg border border-white/10 rounded-2xl shadow-md;
+  }
+  
+  /* Custom animations */
+  .fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  .slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+  
+  /* Progress bar animations */
+  .progress-bar {
+    @apply relative h-2 rounded-full overflow-hidden bg-secondary;
+  }
+  
+  .progress-bar-fill {
+    @apply absolute top-0 left-0 h-full rounded-full transition-all duration-500 bg-primary;
+  }
+  
+  /* Hover effects */
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+  
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center justify-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+  
+  .badge-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/80;
+  }
+  
+  .badge-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+  
+  .badge-outline {
+    @apply border border-primary bg-transparent text-primary hover:bg-primary/10;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
