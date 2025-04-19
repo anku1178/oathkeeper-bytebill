@@ -47,7 +47,7 @@ export const SummaryCards = ({ receipts, totalReceipts, totalAmount, processedCo
           <CardTitle className="text-sm font-medium">Total Amount</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">${totalAmountNum.toFixed(2)}</div>
+          <div className="text-2xl font-bold">₹{totalAmountNum.toFixed(2)}</div>
           <p className="text-xs text-muted-foreground">From all receipts</p>
         </CardContent>
       </Card>

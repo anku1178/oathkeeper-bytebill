@@ -60,8 +60,8 @@ export const ReceiptList = ({ loading, receipts, filteredReceipts }: ReceiptList
                   <div className="col-span-2 text-right font-medium">
                     {
                       typeof receipt.amount === 'number'
-                        ? `$${receipt.amount.toFixed(2)}`
-                        : `$${(parseFloat(receipt.amount.replace(/,/g, '')) || 0).toFixed(2)}`
+                        ? `₹${receipt.amount.toFixed(2)}`
+                        : `₹${(parseFloat(receipt.amount.replace(/,/g, '')) || 0).toFixed(2)}`
                     }
                   </div>
                   <div className="col-span-2 hidden sm:block text-right text-muted-foreground">
